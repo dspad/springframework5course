@@ -9,6 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+/**
+ * Classe di prova corso JPA
+ * @author spado
+ *
+ */
+
 @Entity
 public class Author {
 
