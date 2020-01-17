@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 /**
- * Classe di prova corso JPA
+ * Classe di prova corso JPA 2
  * @author spado
  *
  */
