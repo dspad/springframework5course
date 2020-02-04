@@ -9,7 +9,7 @@ import it.technisblu.spring5webapp.repositories.BookRepository;
 @Controller
 public class BookController {
 
-	private BookRepository bookRepository;
+	private final BookRepository bookRepository;
 	
 	
 	
@@ -21,7 +21,7 @@ public class BookController {
     @RequestMapping("/books")
 	public String getBooks(Model model) {
 		model.addAttribute("books", bookRepository.findAll());
-		return "books";
+		return "books/list";
 	}
 	
 	

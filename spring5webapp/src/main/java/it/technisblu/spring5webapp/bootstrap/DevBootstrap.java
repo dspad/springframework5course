@@ -8,6 +8,7 @@ import it.technisblu.spring5webapp.repositories.AuthorRepository;
 import it.technisblu.spring5webapp.repositories.BookRepository;
 import it.technisblu.spring5webapp.repositories.PublisherRepository;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
  * Created by jt on 5/16/17.
  */
 @Component
-public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
+public class DevBootstrap implements CommandLineRunner {
 
     private AuthorRepository authorRepository;
     private BookRepository bookRepository;
@@ -29,14 +30,10 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     }
 
     @Override
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        initData();
-    }
-
-    private void initData(){
+    public void run(String...  args) throws Exception{
 
         Author spadoni = new Author("Daniele", "Spadoni");
-        Publisher publisherTech = new Publisher("Technis Blu","Viale Luigi Schiavonetti 290");
+        Publisher publisherTech = new Publisher("Technis Blu","Viale Luigi Schiavonetti 290","Roma","Italy","00128");
         Book  simog = new Book("Simog per negati", "1234", publisherTech);
         spadoni.getBooks().add(simog);
         simog.getAuthors().add(spadoni);
@@ -49,6 +46,13 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         publisherRepository.save(publisherTech);
         saveBook(spadoni,simog);
         saveBook(andreini,supporto);
+        
+        publisherTech.getBooks().add(simog);
+        publisherTech.getBooks().add(supporto);
+        
+        System.out.println("Started in Bootstrap");
+        System.out.println("Number of Books "+bookRepository.count());
+        System.out.println("Publisher Number of Books " + publisherTech.getBooks().size());
        
     }
     

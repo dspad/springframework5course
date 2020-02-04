@@ -9,7 +9,7 @@ import it.technisblu.spring5webapp.repositories.AuthorRepository;
 @Controller
 public class AuthorController {
 
-	private AuthorRepository authorRepository;
+	private final AuthorRepository authorRepository;
 	
 	public AuthorController(AuthorRepository authorRepository) {
 		this.authorRepository=authorRepository;
@@ -18,7 +18,7 @@ public class AuthorController {
 	@RequestMapping("/authors")
 	public String getAuthors(Model model) {
 		model.addAttribute("authors", authorRepository.findAll());
-		return "authors";
+		return "authors/list";
 	}
 	
 }
